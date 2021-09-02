@@ -1,5 +1,4 @@
 const notes = require('express').Router()
-const noteData = require('../db/db.json')
 const {
     readFromFile,
     readAndAppend,
@@ -8,7 +7,11 @@ const {
 
 
 notes.get('/', (req, res) => {
-    res.json(noteData)
+    readFromFile('./db/db.json')
+        .then((data) => JSON.parse(data))
+        .then((json) => {
+            res.json(json)
+        })
 })
 
 notes.delete('/:id', (req, res) => {
@@ -17,8 +20,8 @@ notes.delete('/:id', (req, res) => {
         .then((data) => JSON.parse(data))
         .then((json) => {
             const result = json.filter((note) => note.id !== noteId)
-            res.json(result)
             writeToFile('./db/db.json', result)
+            res.json(result)
         })
 })
 
