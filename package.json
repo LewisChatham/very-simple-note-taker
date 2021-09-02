@@ -10,12 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "util": "^0.12.4"
-=======
-    "express": "^4.17.1"
->>>>>>> 9711d80b38c4691ad8b295b1eaf488b34865e7d6
   }
 }
