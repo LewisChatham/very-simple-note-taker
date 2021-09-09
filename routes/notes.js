@@ -32,13 +32,8 @@ notes.post('/', (req, res) => {
         text: req.body.text,
         id: uuid()
     }
-    readFromFile('./db/db.json')
-        .then((data) => JSON.parse(data))
-        .then((json) => {
-            json.push(newNote)
-            writeToFile('./db/db.json', json)
-            res.json(json)
-        })
+    readAndAppend(newNote, './db/db.json')
+    res.json(newNote)
 })
 
 module.exports = notes
